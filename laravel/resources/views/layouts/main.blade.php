@@ -41,7 +41,6 @@
         @show
         @yield('content')
         <div class="container">
-
         </div>
         @section('footer')
         <div class="container">

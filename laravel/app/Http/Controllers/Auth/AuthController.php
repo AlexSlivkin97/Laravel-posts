@@ -15,25 +15,19 @@ class AuthController extends Controller
         $userLogin = $request->input('login');
         $userPassword = $request->input('password');
         if(isset($userLogin) && isset($userPassword)){
-            $login = DB::table('users')->select('users.name')->where('users.name', '=', $userLogin)->get();
-            if($login){
+            $user = DB::table('users')->select('password', 'id')->where('name', '=', $userLogin)->first();
+            if($user){
                 $userPassword = md5($userPassword);
-                $user = DB::table('users')->select('users.id', 'users.password')->where('users.name', '=', $userLogin)->get();
-                foreach($user as $el){
-                    $password = $el->password;
-                    $id = $el->id;
-                }
-                if($userPassword == $password){
-                    $_SESSION['id'] = $id;
-                    return $_SESSION['id'];
+                if($user->password == $userPassword){
+                    /* $id = $_SESSION['id'] */
+                    return 'qwe';
                 }else{
-                    return 'Пароль введен не верно';
+                    return 'Не верно введен пароль';
                 }
             }else{
                 return "Данный логин в системе отсутствует";
             }
         }
-        return 'Поля должны быть заполнены';
     }
     public function logout(){
         $_SESSION['id'] = NULL;
