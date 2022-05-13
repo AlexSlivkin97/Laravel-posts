@@ -19,8 +19,8 @@ class AuthController extends Controller
             if($user){
                 $userPassword = md5($userPassword);
                 if($user->password == $userPassword){
-                    /* $id = $_SESSION['id'] */
-                    return 'qwe';
+                    $_SESSION['id'] = $user->id; 
+                    return redirect('/');
                 }else{
                     return 'Не верно введен пароль';
                 }
