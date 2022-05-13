@@ -17,11 +17,11 @@ use Illuminate\Support\Facades\DB;
 */
 
 Route::get('/', function () {
-    /* session()->forget('0'); */
     return view('layouts.main');
 });
 Route::get("/login", [AuthController::class, 'index'])->name('login');
 Route::post("/login", [AuthController::class, 'Authorization'])->name('Authorization');
+
 Route::get("/logout", [AuthController::class, 'logout'])->name('logout');
 
 Route::get("/registration", [RegistrationController::class, 'index'])->name('registration');

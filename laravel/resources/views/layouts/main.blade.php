@@ -23,7 +23,7 @@
                         <li><a href="/" class="nav-link px-2 text-secondary">Home</a></li>
                         @if(!Session::has('id_user'))
                         <li><a href="{{route('login')}}" class="nav-link px-2 text-white">Авторизация</a></li>
-                        <li><a href="/" class="nav-link px-2 text-white">Регистрация</a></li>
+                        <li><a href="{{route('registration')}}" class="nav-link px-2 text-white">Регистрация</a></li>
                         @else
                         <li><a href="{{route('logout')}}" class="nav-link px-2 text-white">Выйти</a></li>
                         @endif
