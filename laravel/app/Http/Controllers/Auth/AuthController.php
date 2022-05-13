@@ -10,6 +10,9 @@ use App\Http\Controllers\Controller;
 
 class AuthController extends Controller
 {
+    public function index(){
+        return view('authorization.login');
+    }
     public function Authorization(Request $request){
         $_SESSION['id'] = Null;
         $userLogin = $request->input('login');
@@ -19,7 +22,7 @@ class AuthController extends Controller
             if($user){
                 $userPassword = md5($userPassword);
                 if($user->password == $userPassword){
-                    $_SESSION['id'] = $user->id; 
+                    session(['id_user'=>$user->id]);
                     return redirect('/');
                 }else{
                     return 'Не верно введен пароль';
@@ -30,6 +33,7 @@ class AuthController extends Controller
         }
     }
     public function logout(){
-        $_SESSION['id'] = NULL;
+        session()->forget('id_user');
+        return redirect('/');
     }
 }

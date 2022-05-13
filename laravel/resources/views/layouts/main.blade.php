@@ -21,8 +21,12 @@
         
                     <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                         <li><a href="/" class="nav-link px-2 text-secondary">Home</a></li>
+                        @if(!Session::has('id_user'))
                         <li><a href="{{route('login')}}" class="nav-link px-2 text-white">Авторизация</a></li>
-                        <li><a href="{{route('registration')}}" class="nav-link px-2 text-white">Регистрация</a></li>
+                        <li><a href="/" class="nav-link px-2 text-white">Регистрация</a></li>
+                        @else
+                        <li><a href="{{route('logout')}}" class="nav-link px-2 text-white">Выйти</a></li>
+                        @endif
                         <li><a href="#" class="nav-link px-2 text-white">FAQs</a></li>
                         <li><a href="#" class="nav-link px-2 text-white">About</a></li>
                     </ul>
@@ -32,8 +36,21 @@
                     </form>
         
                     <div class="text-end">
-                        <button type="button" class="btn btn-outline-light me-2">Login</button>
-                        <button type="button" class="btn btn-warning">Sign-up</button>
+                        {{-- @if ($_SESSION['id'] == Null)
+                        {{Form::open(['action'=>'App\Http\Controllers\Auth\AuthController@index', 'method' => 'GET'])}}
+                        @csrf
+                        {{Form::submit('Авторизация', ['class'=>'btn btn-outline-light me-2'])}}
+                        {{Form::close()}}
+                        {{Form::open(['action'=>'App\Http\Controllers\Auth\RegistrationController@index', 'method' => 'GET'])}}
+                        @csrf
+                        {{Form::submit('Регистрация', ['class'=>'btn btn-outline-light me-2'])}}
+                        {{Form::close()}}                           
+                        @else
+                        {{Form::open(['action'=>'App\Http\Controllers\Auth\AuthController@logout', 'method' => 'GET'])}}
+                        @csrf
+                        {{Form::submit('Выйти', ['class'=>'btn btn-outline-light me-2'])}}
+                        {{Form::close()}}
+                        @endif --}}
                     </div>
                 </div>
             </div>

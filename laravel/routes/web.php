@@ -17,15 +17,12 @@ use Illuminate\Support\Facades\DB;
 */
 
 Route::get('/', function () {
+    /* session()->forget('0'); */
     return view('layouts.main');
 });
-Route::get("/login", function(){
-    return view('authorization.login');
-})->name('login');
+Route::get("/login", [AuthController::class, 'index'])->name('login');
 Route::post("/login", [AuthController::class, 'Authorization'])->name('Authorization');
-Route::post("/logout", [AuthController::class, 'logout'])->name('logout');
+Route::get("/logout", [AuthController::class, 'logout'])->name('logout');
 
-Route::get("/registration", function(){
-    return view('registration.re');
-})->name('registration');
+Route::get("/registration", [RegistrationController::class, 'index'])->name('registration');
 Route::post("/registration", [RegistrationController::class, 'registration'])->name('AddUser');
